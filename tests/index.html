@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>QUnit Test Suite</title>
-	<link rel="stylesheet" href="http://github.com/jquery/qunit/raw/master/qunit/qunit.css" type="text/css" media="screen">
-	<script type="text/javascript" src="http://github.com/jquery/qunit/raw/master/qunit/qunit.js"></script>
-	<!-- Your project file goes here -->
-	<script type="text/javascript" src="../src/jQuery.logger.js"></script>
-	<!-- Your tests file goes here -->
-	<script type="text/javascript" src="jQuery.logger.tests.js"></script>
-</head>
-<body>
-	<h1 id="qunit-header">QUnit Test Suite for jQuery</h1>
-	<h2 id="qunit-banner"></h2>
-	<div id="qunit-testrunner-toolbar"></div>
-	<h2 id="qunit-userAgent"></h2>
-	<ol id="qunit-tests"></ol>
-</body>
+	<head>
+		<title>QUnit Test Suite</title>
+		<link rel="stylesheet" href="qunit/qunit.css" type="text/css">
+		<script type="text/javascript">	
+			window.console = undefined;
+
+			// mockup for console
+			window.console = {
+				mock: 'console',
+				messages: [],
+				errors: [],
+				warnings: [],
+				information: [],
+				log:function(message){ this.messages.push(message); },
+				error:function(message){ this.errors.push(message); },
+				warn:function(message){ this.warnings.push(message); },
+				info:function(message){ this.information.push(message); }
+			};
+		</script>
+		
+	</head>
+	<body>
+		<h1 id="qunit-header">QUnit Test Suite for jQuery Pluggin Logger</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="qunit/qunit.js"></script>
+		<script type="text/javascript" src="qunit/json2.js"></script>
+		<script type="text/javascript" src="qunit/jqMock.js"></script>
+		<script type="text/javascript" src="qunit/jquery.mockjax.js"></script>
+		<!-- Your project file goes here -->
+		<script type="text/javascript" src="../src/jQuery.logger.js"></script>
+		<!-- Your tests file goes here -->
+		<script type="text/javascript" src="jQuery.logger.test.js"></script>
+	</body>
 </html>
