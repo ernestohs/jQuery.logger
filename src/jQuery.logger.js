@@ -11,41 +11,41 @@
 
 (function( $ ){
 
-	var loggeroptions = {
+	var loggerOptions = {
 							level: 9
 						};
 	
 	var $remoteLogging = function ( options )
 	{
-		if (loggeroptions.url === undefined || loggeroptions.url === '' || loggeroptions.url === null) return;
+		if (loggerOptions.url === undefined || loggerOptions.url === '' || loggerOptions.url === null) return;
 		
 		$.ajax({
-			url: loggeroptions.url,
+			url: loggerOptions.url,
 			dataType: 'json',
 			param: {
 				method: options.method,
 				browser: $.browser,
 				message: options.message
 			},
-			success: loggeroptions.success_callback || function() { }
+			success: loggerOptions.success_callback || function() { }
 		});
 	};
 
 	$.setupLogger = function ( options )
 	{
-		$.extend(loggeroptions, options);
+		$.extend(loggerOptions, options);
 	};
 	
 	$.logLevel = function ( level ) 
 	{
-		if ( level === undefined ) return loggeroptions.level;
+		if ( level === undefined ) return loggerOptions.level;
 		
-		loggeroptions.level = level;
-	}
+		loggerOptions.level = level;
+	};
 
 	$.log = function ( message ) 
 	{
-		if ( loggeroptions.level < 4 ) return;
+		if ( loggerOptions.level < 4 ) return;
 		
 		window.console.log( message );
 		$remoteLogging({
@@ -56,7 +56,7 @@
 
 	$.info = function ( message ) 
 	{
-		if ( loggeroptions.level < 3 ) return;
+		if ( loggerOptions.level < 3 ) return;
 		
 		window.console.info( message );
 		$remoteLogging({
@@ -67,7 +67,7 @@
 
 	$.warn = function(message) 
 	{
-		if ( loggeroptions.level < 2 ) return;
+		if ( loggerOptions.level < 2 ) return;
 		
 		window.console.warn( message );
 		$remoteLogging({
@@ -78,7 +78,7 @@
 
 	$.error = function( message ) 
 	{
-		if ( loggeroptions.level < 1 ) return;
+		if ( loggerOptions.level < 1 ) return;
 		
 		window.console.error( message );
 		$remoteLogging({

@@ -1,13 +1,13 @@
 module('logger', {
 	setup: function() {
-		jQuery.setupLogger({
+		$.setupLogger({
 			level: 9,
 			url: undefined,
 			success_callback: undefined
 		});	
 	},
 	teardown: function() {
-		jQuery.setupLogger({
+		$.setupLogger({
 			level: 9,
 			url: undefined,
 			success_callback: undefined
@@ -22,7 +22,7 @@ test('log to browser console only', function()
 	notEqual( jQuery.log, undefined, 'log is defined' );
 	equal( typeof(jQuery.log), "function", 'log is a function' );
 	
-	jQuery.log('This is log info');
+	$.log('This is log info');
 	
 	equal(window.console.messages[0], 'This is log info', 'info was logged');
 });
@@ -34,7 +34,7 @@ test('info to browser console only', function()
 	notEqual( jQuery.info, undefined, 'info is defined' );
 	equal( typeof(jQuery.info), "function", 'info is a function' );
 	
-	jQuery.info('This is info in the log');
+	$.info('This is info in the log');
 	
 	equal(window.console.information[0], 'This is info in the log', 'info was logged');
 });
@@ -47,7 +47,7 @@ test('warn to browser console only', function()
 	notEqual( jQuery.warn, undefined, 'warn is defined' );
 	equal( typeof(jQuery.warn), "function", 'warn is a function' );
 	
-	jQuery.warn('This is warn info');
+	$.warn('This is warn info');
 	
 	equal(window.console.warnings[0], 'This is warn info', 'warn was logged');
 });
@@ -59,7 +59,7 @@ test('error to browser console only', function()
 	notEqual( jQuery.error, undefined, 'error is defined' );
 	equal( typeof(jQuery.error), "function", 'error is a function' );
 	
-	jQuery.error('This is error info');
+	$.error('This is error info');
 	
 	equal(window.console.errors[0], 'This is error info', 'error was logged');
 });
@@ -69,7 +69,7 @@ test('log to browser console and backend log', function()
 	expect(4);
 	window.console.messages = [];
 	
-	jQuery.setupLogger({
+	$.setupLogger({
 		url: '/loggerService.asmx',
 		success_callback: function( data ){
 			ok(data !== null, 'ajax data response is not null');
@@ -91,7 +91,7 @@ test('log to browser console and backend log', function()
 	
 	stop();
 	
-	jQuery.log('This is log info');
+	$.log('This is log info');
 	
 	setTimeout(function() {  
         start();
